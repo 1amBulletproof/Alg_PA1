@@ -19,8 +19,7 @@ public class TestBinaryTree {
     tree.insert("Peter");
     tree.insert("Daniel");
     
-    //TODO: test
-    //TODO: test the git integration locally
+
     //TODO: test the git integration with github
 
     // Traverse tree
