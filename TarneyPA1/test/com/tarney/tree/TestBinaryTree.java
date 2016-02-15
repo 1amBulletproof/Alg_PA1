@@ -4,10 +4,14 @@
  *  This code is used for educational purposes only
  *  in 605.421 Foundations of Algorithms. 
  */
+//TODO change this class to the submitted main class 
+//TODO input for the program: file? Command line? Gui? hard-coded?
+//TODO needs to run *at least* height(), postOrderTraversal(), getNumberOfLeaves(), getNumberOfNonLeaves()
 
 package com.tarney.tree;
 
 public class TestBinaryTree {
+	
   public static void main(String[] args) {
     // Create a BinaryTree
     BinaryTree<String> tree = new BinaryTree<String>();
@@ -19,9 +23,7 @@ public class TestBinaryTree {
     tree.insert("Peter");
     tree.insert("Daniel");
     
-
-    //TODO: test the git integration with github
-
+   
     // Traverse tree
     System.out.print("Inorder (sorted): ");
     tree.inorder();
@@ -32,16 +34,15 @@ public class TestBinaryTree {
     System.out.print("\nThe number of nodes is " + tree.getSize());
 
     // Search for an element
-    System.out.print("\nIs Peter in the tree? " + 
-      tree.search("Peter"));
+    System.out.print("\nIs Peter in the tree? " +  tree.search("Peter"));
 
     // Get a path from the root to Peter
     System.out.print("\nA path from the root to Peter is: ");
-    java.util.ArrayList<BinaryTree.TreeNode<String>>  path 
-      = tree.path("Peter");
-    for (int i = 0; path != null && i < path.size(); i++)
-      System.out.print(path.get(i).element + " ");
-
+    java.util.ArrayList<BinaryTree.TreeNode<String>>  path = tree.path("Peter");
+    for (int i = 0; path != null && i < path.size(); i++) {
+        System.out.print(path.get(i).element + " ");
+    }
+    // Sort numbers and print using the binary tree
     Integer[] numbers = {2, 4, 3, 1, 8, 5, 6, 7};
     BinaryTree<Integer> intTree = new BinaryTree<Integer>(numbers);
     System.out.print("\nInorder (sorted): ");

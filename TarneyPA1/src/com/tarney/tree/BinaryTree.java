@@ -1,16 +1,39 @@
-package com.tarney.tree;
-/** Original code was provided by "Introduction to Java Programming" 
+/** Binary Tree implementing the AbstractTree and Tree abstract class and interface, respectively
+ * 
+ *  Modified (version 2) and used by 
+ *  @author Brandon Tarney 2/15/16
+ *  
+ *  Original code was provided by "Introduction to Java Programming" 
  * 8th Edition by Y. Daniel Liang, pages 858 - 869
  *
  *  This code is used for educational purposes only
  *  in 605.421 Foundations of Algorithms. 
  * 
+ * @version 2: Added Height(), postOrderTraversal(), getNumberOfLeaves(), getNumberofNonLeaves() methods
  */
 
-public class BinaryTree<E extends Comparable<E>>
-    extends AbstractTree<E> implements Cloneable {
+//TODO public int height() 					returns the length of the longest path from the root to the leaf in the tree
+//TODO public void postOrderTraversal(root) postorder traversal of a binary tree with root vertex "root" must be printed 
+//TODO public int getNumberOfLeaves()  		returns the number of leaf nodes
+//TODO public int getNumberofNonLeaves()  	returns the number of nonleaf nodes
+
+package com.tarney.tree;
+
+public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> implements Cloneable {
+	
   protected TreeNode<E> root;
   protected int size = 0;
+  
+  /** Inner class tree node */
+  public static class TreeNode<E extends Comparable<E>> {
+    E element;
+    TreeNode<E> left;
+    TreeNode<E> right;
+
+    public TreeNode(E e) {
+      element = e;
+    }
+  }
 
   /** Create a default binary tree */
   public BinaryTree() {
@@ -83,7 +106,9 @@ public class BinaryTree<E extends Comparable<E>>
 
   /** Inorder traversal from a subtree */
   protected void inorder(TreeNode<E> root) {
-    if (root == null) return;
+    if (root == null) {
+    	return;
+    }
     inorder(root.left);
     System.out.print(root.element + " ");
     inorder(root.right);
@@ -96,7 +121,9 @@ public class BinaryTree<E extends Comparable<E>>
 
   /** Postorder traversal from a subtree */
   protected void postorder(TreeNode<E> root) {
-    if (root == null) return;
+    if (root == null) {
+    	return;
+    }
     postorder(root.left);
     postorder(root.right);
     System.out.print(root.element + " ");
@@ -109,23 +136,14 @@ public class BinaryTree<E extends Comparable<E>>
 
   /** Preorder traversal from a subtree */
   protected void preorder(TreeNode<E> root) {
-    if (root == null) return;
+    if (root == null) {
+    	return;
+    }
     System.out.print(root.element + " ");
     preorder(root.left);
     preorder(root.right);
   }
-
-  /** Inner class tree node */
-  public static class TreeNode<E extends Comparable<E>> {
-    E element;
-    TreeNode<E> left;
-    TreeNode<E> right;
-
-    public TreeNode(E e) {
-      element = e;
-    }
-  }
-
+  
   /** Get the number of nodes in the tree */
   public int getSize() {
     return size;
@@ -138,8 +156,7 @@ public class BinaryTree<E extends Comparable<E>>
 
   /** Returns a path from the root leading to the specified element */
   public java.util.ArrayList<TreeNode<E>> path(E e) {
-    java.util.ArrayList<TreeNode<E>> list =
-      new java.util.ArrayList<TreeNode<E>>();
+    java.util.ArrayList<TreeNode<E>> list = new java.util.ArrayList<TreeNode<E>>();
     TreeNode<E> current = root; // Start from the root
 
     while (current != null) {
@@ -177,20 +194,24 @@ public class BinaryTree<E extends Comparable<E>>
         break; // Element is in the tree pointed by current
     }
 
-    if (current == null)
-      return false; // Element is not in the tree
+    if (current == null) {
+        return false; // Element is not in the tree
+    }
+
 
     // Case 1: current has no left children
     if (current.left == null) {
       // Connect the parent with the right child of the current node
       if (parent == null) {
         root = current.right;
-      }
+      } 
       else {
-        if (e.compareTo(parent.element) < 0)
+        if (e.compareTo(parent.element) < 0) {
           parent.left = current.right;
-        else
+        } 
+        else {
           parent.right = current.right;
+        }
       }
     }
     else {
@@ -209,11 +230,13 @@ public class BinaryTree<E extends Comparable<E>>
       current.element = rightMost.element;
 
       // Eliminate rightmost node
-      if (parentOfRightMost.right == rightMost)
+      if (parentOfRightMost.right == rightMost) {
         parentOfRightMost.right = rightMost.left;
-      else
+      }
+      else {
         // Special case: parentOfRightMost == current
-        parentOfRightMost.left = rightMost.left;     
+        parentOfRightMost.left = rightMost.left;    
+      }
     }
 
     size--;
@@ -230,11 +253,12 @@ public class BinaryTree<E extends Comparable<E>>
     return new InorderIterator();
   }
 
+  
+  
   // Inner class InorderIterator
   class InorderIterator implements java.util.Iterator {
     // Store the elements in a list
-    private java.util.ArrayList<E> list =
-      new java.util.ArrayList<E>();
+    private java.util.ArrayList<E> list = new java.util.ArrayList<E>();
     private int current = 0; // Point to the current element in list
 
     public InorderIterator() {
@@ -248,7 +272,9 @@ public class BinaryTree<E extends Comparable<E>>
 
     /** Inorder traversal from a subtree */
     private void inorder(TreeNode<E> root) {
-      if (root == null)return;
+      if (root == null) {
+    	  return;
+      }
       inorder(root.left);
       list.add(root.element);
       inorder(root.right);
@@ -256,8 +282,9 @@ public class BinaryTree<E extends Comparable<E>>
 
     /** Next element for traversing? */
     public boolean hasNext() {
-      if (current < list.size())
-        return true;
+      if (current < list.size()) {
+    	  return true;
+      }
 
       return false;
     }
@@ -275,6 +302,8 @@ public class BinaryTree<E extends Comparable<E>>
     }
   }
 
+  
+  
   /** Remove all elements from the tree */
   public void clear() {
     root = null;

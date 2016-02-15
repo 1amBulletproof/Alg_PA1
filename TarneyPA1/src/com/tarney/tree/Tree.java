@@ -1,13 +1,21 @@
-package com.tarney.tree;
-/** Original code was provided by "Introduction to Java Programming" 
+/** Tree Interface
+ * 
+ * Modified and reused by 
+ *  @author Brandon Tarney 2/15/16
+ *  
+ * Original code was provided by "Introduction to Java Programming" 
  * 8th Edition by Y. Daniel Liang, pages 858 - 869
  *
  *  This code is used for educational purposes only
  *  in 605.421 Foundations of Algorithms. 
- * 
+ *  
+ * @version 2: Added Height(), postOrderTraversal(), getNumberOfLeaves(), getNumberofNonLeaves() methods
  */
 
+package com.tarney.tree;
+
 public interface Tree<E extends Comparable<E>> {
+	
   /** Return true if the element is in the tree */
   public boolean search(E e);
 
