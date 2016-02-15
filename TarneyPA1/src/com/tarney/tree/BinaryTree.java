@@ -24,6 +24,7 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> impleme
   protected TreeNode<E> root;
   protected int size = 0;
   
+  
   /** Inner class tree node */
   public static class TreeNode<E extends Comparable<E>> {
     E element;
@@ -35,6 +36,7 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> impleme
     }
   }
 
+  
   /** Create a default binary tree */
   public BinaryTree() {
   }
@@ -45,6 +47,31 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> impleme
       insert(objects[i]);
   }
 
+  
+  
+  /*New Methods for PA1 written by Brandon Tarney*/
+  
+  /*Returns the maximum height of the tree
+   * 
+   * @param
+   * @return integer height of the tree
+   */
+  public int getHeight() {
+	  int height = height(root);
+	  return height;
+  }
+  
+  private int height(TreeNode<E> root) {
+	  if (root == null) {
+		  return 0;
+	  }
+	  else {
+		  return Math.max(height(root.left), height(root.right)) + 1;
+	  }
+  }
+  
+  
+  
   /** Returns true if the element is in the tree */
   public boolean search(E e) {
     TreeNode<E> current = root; // Start from the root
