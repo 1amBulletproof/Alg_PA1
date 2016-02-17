@@ -1,9 +1,9 @@
 # README
 
 ## Assignment Details:
-- Assignment: *JHU Algorithms 605.421 Programming Assignment 1*
-- Author: *Brandon Tarney*
-- Date: *2/29/16*
+- Assignment: **JHU Algorithms 605.421 Programming Assignment 1**
+- Author: **Brandon Tarney**
+- Date: **2/29/16**
 
 ## How to use the program:
 1.To run:
