@@ -9,13 +9,10 @@
  *  This code is used for educational purposes only
  *  in 605.421 Foundations of Algorithms. 
  * 
- * @version 2: Added Height(), postOrderTraversal(), getNumberOfLeaves(), getNumberofNonLeaves() methods
+ * @version 2: Added Height(), postOrderTraversal(), getNumberOfLeaves(), getNumberofNonLeaves() methods (lines 50-130)
  */
 
-//TODO public int height() 					returns the length of the longest path from the root to the leaf in the tree
-//TODO public void postOrderTraversal(root) postorder traversal of a binary tree with root vertex "root" must be printed 
-//TODO public int getNumberOfLeaves()  		returns the number of leaf nodes
-//TODO public int getNumberofNonLeaves()  	returns the number of nonleaf nodes
+
 
 package com.tarney.tree;
 
@@ -50,10 +47,8 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> impleme
   }
 
   
-  
-  //////
-  
-  /*New Methods for PA1 written by Brandon Tarney*/
+  /**************************New Methods for PA1 written by Brandon Tarney**************************************************/
+  /*************************************************************************************************************************/
   
   /*Returns the maximum height of the tree
    * 
@@ -67,7 +62,7 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> impleme
   
   /*Returns the maximum height of the tree
    * <p> uses recursion to traverse every path and uses the math.max
-   * method to compute which path is greater
+   * method to compute which path is greater</p>
    * 
    * @param TreeNode<E> root   The root of the tree
    * @return integer height of the tree (empty tree = 0, 1 node = height of 1)
@@ -102,7 +97,6 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> impleme
 		return numberOfLeaves;
 	}
 	
-	//TODO test and talk about the use of postorder traversal code
 	/*Traverse a tree in postorder and print each node as it is accessed
 	 * 
 	 * <p> This method references the given postorder method.
@@ -113,16 +107,29 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> impleme
 	 * </ol></p>
 	 * 
 	 * <p>See <a href="https://en.wikipedia.org/wiki/Tree_traversal#Post-order"> POSTORDER TRAVERSAL</a>
+	 * 
+	 * @param
+	 * @return
 	 */
 	public void postOrderTraversal() {
 		postorder();
 	}
 	
-	//TODO Find the nonLeaves (Modify the leaves code to be modular with this one and use the iterator?) Just subtract number of leaves from size of iterator/tree!!
+	/*Return the number of non-leaves in a given tree
+	 * <p> Finds the number of non-leaves in a given tree by subtracting
+	 * number of leaves from the tree size </p>
+	 * 
+	 * @param
+	 * @return
+	 */
+	public int getNumberOfNonLeaves() {
+		int numberOfNonLeaves = getNumberOfLeaves() - size;
+		return numberOfNonLeaves;	
+	}
 	
-	/////
+/****************************************************************************************************************************/
+/*************************************************************************************************************************/
 	
-  
   
   /** Returns true if the element is in the tree */
   public boolean search(E e) {

@@ -10,7 +10,7 @@ package com.tarney.main;
 
 import com.tarney.tree.BinaryTree;
 
-public class TestBinaryTree {
+public class BinaryTreeMain {
 	
   public static void main(String[] args) {
 

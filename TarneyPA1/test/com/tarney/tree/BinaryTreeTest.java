@@ -15,8 +15,7 @@ public class BinaryTreeTest {
 
 	@Before
 	public void setUpBeforeClass() throws Exception {
-		tree = new BinaryTree<>();
-		
+		tree = new BinaryTree<>();	
 	}
 
 	@Test
@@ -50,7 +49,7 @@ public class BinaryTreeTest {
 	}
 	
 	@Test
-	public void findLeaves() {
+	public void countLeaves() {
 		assertThat("There are 0 leaves", tree.getNumberOfLeaves(), is(0));
 		tree.insert("item1");
 		assertThat("There is 1 leaf", tree.getNumberOfLeaves(), is(1));
@@ -66,6 +65,20 @@ public class BinaryTreeTest {
 		tree.insert("item11");
 		tree.insert("item13");
 		assertThat("There are 2 leaves", tree.getNumberOfLeaves(), is(4));
+	}
+	
+	@Test
+	public void countNonLeaves() {
+		assertThat("There are 0 non-leaves", tree.getNumberOfNonLeaves(), is(0));
+		tree.insert("5");
+		tree.insert("7");
+		assertThat("There is 1 non-leaf", tree.getNumberOfLeaves(), is(1));
+		tree.insert("3");
+		tree.insert("4");
+		assertThat("There are 2 non-leaves", tree.getNumberOfLeaves(), is(2));
+		tree.insert("2");
+		tree.insert("6");
+		assertThat("There are 3 non-leaves", tree.getNumberOfLeaves(), is(3));
 	}
 	
 	@Test
@@ -94,4 +107,5 @@ public class BinaryTreeTest {
 		tree.postOrderTraversal();
 		System.out.println(" <- Result\n");
 	}
+	
 }
