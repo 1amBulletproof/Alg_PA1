@@ -19,6 +19,8 @@
 
 package com.tarney.tree;
 
+import java.util.Iterator;
+
 public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> implements Cloneable {
 	
   protected TreeNode<E> root;
@@ -49,18 +51,27 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> impleme
 
   
   
+  //////
+  
   /*New Methods for PA1 written by Brandon Tarney*/
   
   /*Returns the maximum height of the tree
    * 
    * @param
-   * @return integer height of the tree
+   * @return integer height of the tree (empty tree = 0, 1 node = height of 1)
    */
   public int getHeight() {
 	  int height = height(root);
 	  return height;
   }
   
+  /*Returns the maximum height of the tree
+   * <p> uses recursion to traverse every path and uses the math.max
+   * method to compute which path is greater
+   * 
+   * @param TreeNode<E> root   The root of the tree
+   * @return integer height of the tree (empty tree = 0, 1 node = height of 1)
+   */
   private int height(TreeNode<E> root) {
 	  if (root == null) {
 		  return 0;
@@ -70,6 +81,47 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> impleme
 	  }
   }
   
+  /*Returns the number of leaves in a given tree
+   * <p> uses a modified iterator inner class which stores the nodes in the tree
+   * and each node is checked for children...any node without children is a leaf</p>
+   * 
+   * @param 
+   * @return integer number of leaves in a tree (empty tree = 0)
+   */
+	public int getNumberOfLeaves() {
+		//I modified the inorder iterator to store references to the actual nodes instead of their values
+		Iterator iterator = inorderIterator();
+		int numberOfLeaves = 0;
+		while (iterator.hasNext()) {
+			TreeNode<E> node = (TreeNode<E>) iterator.next();
+			if (node.left == null && node.right == null) {
+				numberOfLeaves++;
+			}
+			
+		}
+		return numberOfLeaves;
+	}
+	
+	//TODO test and talk about the use of postorder traversal code
+	/*Traverse a tree in postorder and print each node as it is accessed
+	 * 
+	 * <p> This method references the given postorder method.
+	 * It is a recursive algorithm which implements the Post-order algorithm or:
+	 * <ol><li>Traverse the left subtree by recursively calling the postorder function</li>
+	 * <li>Traverse the right subtree by recursively calling the post-order function</li>
+	 * <li>Display the data part of the root (or current node)</li>
+	 * </ol></p>
+	 * 
+	 * <p>See <a href="https://en.wikipedia.org/wiki/Tree_traversal#Post-order"> POSTORDER TRAVERSAL</a>
+	 */
+	public void postOrderTraversal() {
+		postorder();
+	}
+	
+	//TODO Find the nonLeaves (Modify the leaves code to be modular with this one and use the iterator?) Just subtract number of leaves from size of iterator/tree!!
+	
+	/////
+	
   
   
   /** Returns true if the element is in the tree */
@@ -285,7 +337,7 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> impleme
   // Inner class InorderIterator
   class InorderIterator implements java.util.Iterator {
     // Store the elements in a list
-    private java.util.ArrayList<E> list = new java.util.ArrayList<E>();
+    private java.util.ArrayList<TreeNode> list = new java.util.ArrayList<>();
     private int current = 0; // Point to the current element in list
 
     public InorderIterator() {
@@ -303,7 +355,7 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> impleme
     	  return;
       }
       inorder(root.left);
-      list.add(root.element);
+      list.add(root);
       inorder(root.right);
     }
 
@@ -323,7 +375,7 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> impleme
 
     /** Remove the current element and refresh the list */
     public void remove() {
-      delete(list.get(current)); // Delete the current element
+//      delete(list.get(current)); // Delete the current element
       list.clear(); // Clear the list
       inorder(); // Rebuild the list
     }
@@ -352,4 +404,5 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> impleme
       copy(root.right, tree);
     }
   }
+
 }
