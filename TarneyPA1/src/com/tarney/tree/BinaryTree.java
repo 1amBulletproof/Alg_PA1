@@ -9,11 +9,8 @@
  *  This code is used for educational purposes only
  *  in 605.421 Foundations of Algorithms. 
  * 
- * @version 2: Added Height(), postOrderTraversal(), getNumberOfLeaves(), getNumberofNonLeaves() methods (lines 50-130)
+ * @version 2: Added getHeight(), Height(), postOrderTraversal(), getNumberOfLeaves(), getNumberofNonLeaves() methods (lines 50-130)
  */
-
-
-
 package com.tarney.tree;
 
 import java.util.Iterator;
@@ -123,7 +120,7 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> impleme
 	 * @return
 	 */
 	public int getNumberOfNonLeaves() {
-		int numberOfNonLeaves = getNumberOfLeaves() - size;
+		int numberOfNonLeaves = size - getNumberOfLeaves();
 		return numberOfNonLeaves;	
 	}
 	
