@@ -81,7 +81,7 @@ public class BinaryTree<E extends Comparable<E>> extends AbstractTree<E> impleme
    * @return integer number of leaves in a tree (empty tree = 0)
    */
 	public int getNumberOfLeaves() {
-		//I modified the inorder iterator to store references to the actual nodes instead of their values
+		//modified inorder iterator to store references to the actual nodes instead of their values
 		Iterator iterator = inorderIterator();
 		int numberOfLeaves = 0;
 		while (iterator.hasNext()) {
