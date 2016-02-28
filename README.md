@@ -26,4 +26,5 @@
 1. **Output:** Console output for each of the 4 methods listed above
 1. **Input:** hard-coded array of tree node values @ line 21 of "BinaryTreeMain.java"
 1. **Unit tests:** "test" folder in package "com.tarney.tree" in the class "BinaryTreeTest.java"
+  - Unit tests require JUnit 4 & Hamcrest
 1. Program was created in eclipse as a Java project, see [the github repo for a copy](https://github.com/1amBulletproof/Alg_PA1)
