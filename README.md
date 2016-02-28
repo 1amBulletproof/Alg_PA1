@@ -9,6 +9,7 @@
 ## About the Code
 1. **Required methods:** class "BinaryTree.java" @ lines 50-130
   1. getHeight() & Height()
+    1. (empty tree = 0, 1 node = height of 1)
   2. postOrderTraversal()
   3. getNumberOfleaves()
   4. getNumberOfNonLeaves()
